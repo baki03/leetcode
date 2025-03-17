@@ -6,7 +6,7 @@ impl Solution {
 
         for (i, num) in nums.iter().enumerate() {
             if let Some(j) = map.get(&(target - num)) {
-                return vec![i as i32, *j as i32];
+                return vec![*j as i32, i as i32];
             } else {
                 map.insert(num, i);
             }
