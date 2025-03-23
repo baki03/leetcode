@@ -1,5 +1,3 @@
-use std::collections::{HashMap, HashSet};
-
 impl Solution {
     pub fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
         let mut cols: [i32; 9] = [0; 9];
