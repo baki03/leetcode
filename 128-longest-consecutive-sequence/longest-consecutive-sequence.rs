@@ -7,12 +7,13 @@ impl Solution {
 
         for num in nums {
             if !map.contains_key(&num) {
-                let before = *map.get(&(num - 1)).unwrap_or(&0);
-                let after = *map.get(&(num + 1)).unwrap_or(&0);
-                let value = before + after + 1;
+                let value = 
+                    *map.get(&(num - 1)).unwrap_or(&0) +
+                    *map.get(&(num + 1)).unwrap_or(&0) + 1;
+
                 map.insert(num, value);
-                map.insert(num - before, value);
-                map.insert(num + after, value);
+                map.insert(num - *map.get(&(num - 1)).unwrap_or(&0), value);
+                map.insert(num + *map.get(&(num + 1)).unwrap_or(&0), value);
                 longest = longest.max(value);
             }
         }
