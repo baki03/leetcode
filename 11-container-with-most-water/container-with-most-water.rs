@@ -5,7 +5,9 @@ impl Solution {
         let mut right = height.len() - 1;
 
         while left < right {
-            max = max.max(height[left].min(height[right]) * (right - left) as i32);
+            let h = height[left].min(height[right]);
+            let w = (right - left) as i32;
+            max = max.max(w * h);
 
             if height[left] < height[right] {
                 left += 1;
