@@ -10,8 +10,8 @@ impl Solution {
                 let before = *map.get(&(num - 1)).unwrap_or(&0);
                 let after = *map.get(&(num + 1)).unwrap_or(&0);
                 let value = before + after + 1;
-                map.insert(num, value);
 
+                map.insert(num, value);
                 map.insert(num - before, value);
                 map.insert(num + after, value);
 
