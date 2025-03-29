@@ -1,10 +1,10 @@
 impl Solution {
     pub fn is_palindrome(s: String) -> bool {
         let mut s = s.to_lowercase();
-        s.retain(|c| 
-            (c >= 'a' && c <= 'z') ||
-            (c >= 'A' && c <= 'Z') ||
-            (c >= '0' && c <= '9')
+        s.retain(|c|
+            ('a' <= c && c <= 'z') ||
+            ('A' <= c && c <= 'Z') ||
+            ('0' <= c && c <= '9')
         );
 
         let bytes = s.as_bytes();
