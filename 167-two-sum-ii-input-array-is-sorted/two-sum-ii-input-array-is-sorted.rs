@@ -5,14 +5,14 @@ impl Solution {
 
         while left < right {
             let value = numbers[left] + numbers[right];
-            if value == target {
-                return vec![(left + 1) as i32, (right + 1) as i32];
-            } else if value > target {
+            if value > target {
                 right -= 1;
-            } else {
+            } else if value < target {
                 left += 1;
+            } else {
+                return vec![(left + 1) as i32, (right + 1) as i32];
             }
         }
-        vec![0, 0]
+        Vec::new()
     }
 }
