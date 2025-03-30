@@ -5,9 +5,10 @@ impl Solution {
         let mut area = 0;
 
         while left < right {
-            let w = (right - left) as i32;
             let h = height[left].min(height[right]);
+            let w = (right - left) as i32;
             area = area.max(w * h);
+
             if height[left] < height[right] {
                 left += 1;
             } else {
