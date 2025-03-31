@@ -16,7 +16,7 @@ impl MinStack {
     
     fn push(&mut self, val: i32) {
         self.stack.push(match self.stack.last() {
-            Some(&(_, min)) => (val, val.min(min)),
+            Some(&(_, min)) => (val, min.min(val)),
             None => (val, val),
         })
     }
