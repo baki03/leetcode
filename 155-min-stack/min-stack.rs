@@ -1,5 +1,6 @@
 struct MinStack {
-    stack: Vec<(i32, i32)>,
+    stack: Vec<i32>,
+    min_stack: Vec<i32>
 }
 
 
@@ -11,26 +12,35 @@ impl MinStack {
     fn new() -> Self {
         Self {
             stack: Vec::new(),
+            min_stack: Vec::new()
         }
     }
     
     fn push(&mut self, val: i32) {
-        self.stack.push(match self.stack.last() {
-            Some(&(_, min)) => (val, val.min(min)),
-            None => (val, val),
-        })
+        self.stack.push(val);
+        self.min_stack.push(match self.min_stack.last() {
+            Some(min) => val.min(*min),
+            None => val,
+        });
     }
     
     fn pop(&mut self) {
         self.stack.pop();
+        self.min_stack.pop();
     }
     
     fn top(&self) -> i32 {
-        self.stack.last().unwrap().0
+        match self.stack.last() {
+            Some(top) => *top,
+            None => -1
+        }
     }
     
     fn get_min(&self) -> i32 {
-        self.stack.last().unwrap().1
+        match self.min_stack.last() {
+            Some(min) => *min,
+            None => -1
+        }
     }
 }
 
