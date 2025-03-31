@@ -15,11 +15,10 @@ impl MinStack {
     }
     
     fn push(&mut self, val: i32) {
-        if let Some((_, min)) = self.stack.last() {
-            self.stack.push((val, val.min(*min)));
-        } else {
-            self.stack.push((val, val));
-        }
+        self.stack.push(match self.stack.last() {
+            Some(&(_, min)) => (val, val.min(min)),
+            None => (val, val),
+        })
     }
     
     fn pop(&mut self) {
