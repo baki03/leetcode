@@ -18,15 +18,20 @@ impl MinStack {
     
     fn push(&mut self, val: i32) {
         self.stack.push(val);
-        self.min_stack.push(match self.min_stack.last() {
-            Some(min) => val.min(*min),
-            None => val,
-        });
+        if self.min_stack.is_empty() ||
+            val <= *self.min_stack.last().unwrap() {
+            self.min_stack.push(val);
+        }
     }
     
     fn pop(&mut self) {
+        if self.stack.is_empty() {
+            return;
+        }
+        if self.min_stack.last() == self.stack.last() {
+            self.min_stack.pop();
+        }
         self.stack.pop();
-        self.min_stack.pop();
     }
     
     fn top(&self) -> i32 {
