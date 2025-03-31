@@ -2,22 +2,21 @@ impl Solution {
     pub fn trap(height: Vec<i32>) -> i32 {
         let mut left = 0;
         let mut right = height.len() - 1;
+        let mut max_left = height[left];
+        let mut max_right = height[right];
+        let mut count = 0;
 
-        let mut left_max = height[left];
-        let mut right_max = height[right];
-
-        let mut result = 0;
         while left < right {
-            if left_max < right_max {
+            if max_left < max_right {
                 left += 1;
-                left_max = left_max.max(height[left]);
-                result += left_max - height[left];
+                max_left = max_left.max(height[left]);
+                count += max_left - height[left];
             } else {
                 right -= 1;
-                right_max = right_max.max(height[right]);
-                result += right_max - height[right];
+                max_right = max_right.max(height[right]);
+                count += max_right - height[right];
             }
         }
-        result
+        count
     }
 }
