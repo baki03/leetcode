@@ -9,6 +9,7 @@ struct MinStack {
  * If you need a mutable reference, change it to `&mut self` instead.
  */
 impl MinStack {
+
     fn new() -> Self {
         Self {
             stack: Vec::new(),
@@ -18,7 +19,7 @@ impl MinStack {
     
     fn push(&mut self, val: i32) {
         self.stack.push(val);
-        if self.min_stack.is_empty() || val <= *self.min_stack.last().unwrap() {
+        if self.min_stack.is_empty() || val <= *self.min_stack.last().unwrap()  {
             self.min_stack.push(val);
         }
     }
