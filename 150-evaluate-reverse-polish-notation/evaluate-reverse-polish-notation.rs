@@ -4,19 +4,30 @@ impl Solution {
 
         for token in tokens {
             match token.as_str() {
-                "+" | "-" | "*" | "/" => {
+                "+" => {
                     let right = stack.pop().unwrap();
-                    let left = stack.pop().unwrap(); 
-                    stack.push(match token.as_str() {
-                        "+" => left + right,
-                        "-" => left - right,
-                        "*" => left * right,
-                        _ => left / right
-                    });
-                }
-                _ => stack.push(token.parse::<i32>().unwrap()),
+                    let left = stack.pop().unwrap();
+                    stack.push(left + right);
+                },
+                "-" => {
+                    let right = stack.pop().unwrap();
+                    let left = stack.pop().unwrap();
+                    stack.push(left - right);
+                },
+                "*" => {
+                    let right = stack.pop().unwrap();
+                    let left = stack.pop().unwrap();
+                    stack.push(left * right);
+                },
+                "/" => {
+                    let right = stack.pop().unwrap();
+                    let left = stack.pop().unwrap();
+                    stack.push(left / right);
+                },
+                _ => stack.push(token.parse::<i32>().unwrap())
             }
         }
+
         stack.pop().unwrap()
     }
 }
