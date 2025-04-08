@@ -5,17 +5,17 @@ impl Solution {
 
         for i in 0..temperatures.len() {
             let current_temp = temperatures[i];
-            while let Some(&(index, temp)) = stack.last() {
-                if current_temp > temp {
-                    res[index] = (i - index) as i32;
-                    stack.pop();
-                } else {
-                    break;
+            while !stack.is_empty() {
+                match stack.last() {
+                    Some(&(j, temp)) if current_temp > temp => {
+                        res[j] = (i - j) as i32;
+                        stack.pop();
+                    },
+                    _ => break,
                 }
             }
             stack.push((i, current_temp));
         }
-
         res
     }
 }
