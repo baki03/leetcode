@@ -2,7 +2,7 @@ impl Solution {
     fn backtrack(pair: (i32, i32), n: i32, res: &mut Vec<String>, stack: String) {
         let (open_n, closed_n) = pair;
 
-        if open_n == closed_n && open_n == n {
+        if open_n == n && open_n == closed_n {
             res.push(stack);
             return;
         }
@@ -28,8 +28,7 @@ impl Solution {
 
     pub fn generate_parenthesis(n: i32) -> Vec<String> {
         let mut res = Vec::new();
-        let stack = String::new();
-        Solution::backtrack((0, 0), n, &mut res, stack);
-        res
+        Solution::backtrack((0, 0), n, &mut res, "".to_string());
+        res       
     }
 }
